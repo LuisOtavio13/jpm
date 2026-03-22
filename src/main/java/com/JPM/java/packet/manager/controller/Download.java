@@ -12,16 +12,16 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
-@RequestMapping("/dowload")
-public class Dowload {
+@RequestMapping("/download")
+public class Download {
 
     final DowloadPacketinterface dowloadPacketinterface;
 
-    public Dowload(DowloadPacketinterface dowloadPacketinterface) {
+    public Download(DowloadPacketinterface dowloadPacketinterface) {
         this.dowloadPacketinterface = dowloadPacketinterface;
     }
 
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<MultipartFile> postMethodName(
         @RequestParam("file") MultipartFile file
     ) {
@@ -29,8 +29,10 @@ public class Dowload {
         return ResponseEntity.ok(responseEntity);
     }
 
-    @GetMapping("/")
-    public ResponseEntity<Resource> getMethodName(@RequestBody String name) {
+    @GetMapping
+    public ResponseEntity<Resource> getMethodName(
+        @RequestParam(name = "file") String name
+    ) {
         Resource responseEntity = dowloadPacketinterface.getFile(name);
         return ResponseEntity.ok(responseEntity);
     }

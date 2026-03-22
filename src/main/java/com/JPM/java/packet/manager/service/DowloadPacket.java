@@ -19,7 +19,7 @@ public class DowloadPacket implements DowloadPacketinterface {
         File arquivo = new File("/up/" + name);
 
         if (!arquivo.exists() || !arquivo.isFile()) {
-            throw new RuntimeException("file not found");
+            throw new FileError("file not found");
         }
 
         Resource resource = new FileSystemResource(arquivo);
